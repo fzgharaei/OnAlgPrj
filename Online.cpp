@@ -6,11 +6,8 @@
 
 using namespace std;
 
-
 int main()
 {
-
-
 
 // Declare variables:
 int M, N;
@@ -40,7 +37,6 @@ if (line.length() >= 4 || line[0] == '%')
 	matrix[(m-1)*M + n - 1] = 1;
 	matrix[(n-1)*M + m - 1] = 1;
 }
-
 
 std::cout << "\n";
 file.close();
