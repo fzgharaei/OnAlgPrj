@@ -10,10 +10,10 @@ using namespace std;
 int main()
 {
 
-// Open the file:
+
 
 // Declare variables:
-int M, N, L;
+int M, N;
 M = 4;
 N = 12;
 
@@ -22,6 +22,7 @@ double* matrix;			     // Creates a pointer to the array
 matrix = new double[M*N];	     // Creates the array of M*N size
 std::fill(matrix, matrix + M*N, 0.); // From <algorithm>, zeros all entries.
 
+// Open the file:
 std::ifstream file("ENZYMES_g473.txt");
 std::string line;
 
@@ -41,19 +42,8 @@ if (line.length() >= 4 || line[0] == '%')
 }
 
 
-/*
-// Read the data
-for (int l = 0; l < L; l++)
-{
-	int m, n;
-	double data;
-	fin >> m >> n >> data;
-	std::cout << data ;
-	matrix[(m-1) + (n-1)*M] = data;
-}
-*/
 std::cout << "\n";
-//fin.close();
+file.close();
 for (int m = 0; m < M; m++)
 {
     for(int n = 0; n < N; n++)
