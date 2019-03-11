@@ -14,7 +14,7 @@ int M, N;
 M = 4;
 N = 12;
 
-// Create your matrix:
+// Create and initialize matrix:
 double* matrix;			     // Creates a pointer to the array
 matrix = new double[M*N];	     // Creates the array of M*N size
 std::fill(matrix, matrix + M*N, 0.); // From <algorithm>, zeros all entries.
