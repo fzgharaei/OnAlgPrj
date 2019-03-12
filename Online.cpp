@@ -67,7 +67,7 @@ int minEdgeBFS(vector <int> edges[], int u, int v, int n)
 
 
 
- void adjacencyMatrix(string fileName)
+ void computeDistancesFromFile(string fileName)
  {
 vector <int> edges[9];
   
@@ -125,6 +125,6 @@ int main()
   {
 
 string fileName = "ENZYMES_g473.txt";
-adjacencyMatrix(fileName);
+computeDistancesFromFile(fileName);
 
 }
