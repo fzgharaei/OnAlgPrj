@@ -30,7 +30,7 @@ if (k == 0) {
 int main() {
   int n = 9, k = 4;
 
-  for (int i = 0; i < n; ++i) { people.push_back(i+1); }
+  for (int i = 0; i < n; ++i) { people.push_back(i); }
  	combination_calc(0, k);
 
   for(int i =0; i<=combinations.size(); i++){
