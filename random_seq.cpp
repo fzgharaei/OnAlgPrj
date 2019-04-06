@@ -71,7 +71,7 @@ return result;
 
 void print_seq(vector<int> seq){
 	for(int i =0;i<seq.size();i++)
-		cout<<seq[i]<<" ";
+		cout<<seq[i]<<",";
 	cout<<endl;
 }		
 int main(){
