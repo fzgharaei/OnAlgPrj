@@ -677,6 +677,7 @@ int computeGreedy(int** D,int r[],int C0[]){
 
 	for (int n = 0; n < length; n++)
 	{
+/*
 		cout <<  "original C0 "<< "\n" ;
 	
 		for (int k = 0; k<4; k++)// k : number of servers
@@ -684,34 +685,44 @@ int computeGreedy(int** D,int r[],int C0[]){
                  cout << C0[k]<< "  ";
 	}
 	cout <<   "\n" ;
+*/
 		int x = r[n];
-		int x0 = r[n];
-		int y0 = C0[0];
-		int min = D[x0][y0];	
-		//cout << x << "x: \n";
+		int x0 = r[n];  //nth request
+		int y0 = C0[0]; //first server
+		int min = D[x0][y0];	//Distance between request and first server
+		ymin = y0;
+		//cout << x << "min dis between request and  first server : \n"  << min  << "\n";
 	for (int j = 0; j < 4; j++) //finding nearest server to current request
 	{
 		int y = C0[j];
+		//cout << "nth request: " << x << "  kth server: " << y << "\n";
+		//cout << x << "min dis between request and  kth  server : \n"  << D[x][y]  << "\n";
 		if (D[x][y] < min)
 		{
 			min = D[x][y];
 			xmin = x;
-			ymin = y;
+			//ymin = y;
+			ymin = j;
 		}
+		
 		//min = std::min(min, D[x][y]);
 		
                  //ssscout << D[x][y] << ' ';
-	}	
+	}
+	//cout << "MIN:  " <<  min << "\n";	
 	totalCost = totalCost + min;
-	cout << "min: " << "xmin: " << " ymin: " << min << "  " << xmin << "  " << ymin << "\n";
+	//cout << "min: " << "xmin: " << " ymin: " << min << "  " << xmin << "  " << ymin << "\n";
 	//update C0 (current position of servers)
 	C0[ymin] = r[n];
+	sort(C0, C0+4);
+/*
 	std::cout << "updated C0 " << "\n" ;
 	for (int k = 0; k<4; k++)
 	{
 		cout << C0[k]<< "  ";
 	}
 	cout <<   "\n" ;	
+*/
        	}
 	std::cout << "totalcost: " << totalCost ;
 	std::cout << std::endl;	
@@ -751,28 +762,32 @@ int main()
 	*/
 	 
 	//string fileName = "ENZYMES_g473.txt";
+	string fileName = "Test_Graph2.txt";
+	//string fileName = "ENZYMES_g12.edges";
 	//string fileName = "Test_Graph.txt";
-	string fileName = "ENZYMES_g12.edges";
 	//comCount = calComCount(nodes,4);
 	int** Distance;
 	Distance = computeDistancesFromFile(fileName);
 	int C0[] = {0,1,2,3};
-	//int requests[] = {4,5,6,7};
+	//int requests[] = {7,8,9};
 	int requests[] = {7,8,3,4,5,4,6,6,8,3,2,1,7,8,3,4,5,4,6,6,8,3,2,1,7,8,3,4,5,4,6,6,8,3,2,1};
+	//int requests[] = {0,1,2,3,0,0,1,2,3,0,0,1,2,3,0,0,1,2,3,0,0,1,2,3,0,0,1,2,3,0,0,1,2,3,0,0,1,2,3,0,0,1,2,3,0,0,1,2,3,0,0,1,2,3,0,0,1,2,3,0};
 	int  minGreedy = computeGreedy( Distance, requests, C0);
 	cout << "Minimum cost in Greedy: " << minGreedy << "\n";
 
 
 	//Intialize all points
-	points.push_back(0);
-	points.push_back(1);
-	points.push_back(2);
-	points.push_back(3);
-	points.push_back(4);
-	points.push_back(5);
-	points.push_back(6);
-	points.push_back(7);
-	points.push_back(8);
+	for(int k=0; k < nodes; k++) 
+	points.push_back(k);
+
+
+
+
+
+
+
+
+
 
 calCombinationCFG();
 cout << "counttttt : " << comCount << "\n";
@@ -847,5 +862,7 @@ for (int t=0;t<comCount;t++)
 int MinimumWFA = computeWFA(Distance,requests,C00);
 cout << "Minimum cost for WFA: " <<  MinimumWFA <<  "\n";
 
+
+return 0;
 
 }
