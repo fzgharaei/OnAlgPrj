@@ -14,8 +14,8 @@ int main()
     //For random values every time 
     srand(time(NULL)); 
       
-    int NUM = 8;    // Number of Vertices - can be read from input
-    int NUMEDGE = 18; // Number of Edges 
+    int NUM = 15;    // Number of Vertices - can be read from input
+    int NUMEDGE = 50; // Number of Edges 
 	printf("%d %d %d\n", NUM, NUM, NUMEDGE);      
 //    for (int i=1; i<=3; i++) // 3 generation for test
  //   { 
@@ -35,16 +35,27 @@ int main()
         { 
             int a = rand() % NUM; 
             int b = rand() % NUM; 
-            pair<int, int> p = make_pair(a, b); 
-              
+            while(a==b){
+		b = rand() % NUM;
+		}
+	    pair<int, int> p = make_pair(a, b); 
+		pair<int, int> reverse_p = make_pair(b, a);               
             // Search for a random "new" edge everytime 
             // Note - In a tree the edge (a, b) is same  
-            // as the edge (b, a) 
-            while (container.find(p) != container.end()) 
+            // as the edge (b, a)
+		//if(container.find(p)!= container.end()){
+		//	cout<<container.find(p)->first<<container.find(p)->second<<endl;
+		//} 
+            while (container.find(p) != container.end() || 
+                    container.find(reverse_p) != container.end()) 
             { 
                 a = rand() % NUM; 
                 b = rand() % NUM; 
-                p = make_pair(a, b); 
+            while(a==b){
+		b = rand() % NUM;
+		}
+                p = make_pair(a, b);
+		reverse_p = make_pair(b, a); 
             } 
             container.insert(p); 
         } 
