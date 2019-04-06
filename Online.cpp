@@ -10,20 +10,23 @@
 using namespace std;
 
 
-int reqLength;
-int comCount = 0;
-int OPTcosts[230300];
+int reqLength;  //request length
+int comCount = 0; //combination count 
+int OPTcosts[230300]; 
 int nodes = 0;
-int reqs[50];
+int reqs[500];
+
 //static int count = 0;
+
+
 struct serverCFGs {
   int cfg[4];
   int cost; 
 } srvcfg[230300];
 
 
-vector<int> points;
-vector< vector<int> > combinations;
+vector<int> points;//all nodes
+vector< vector<int> > combinations; //combination of configuration
 vector<int> combination;
 
 
@@ -36,12 +39,13 @@ int** computeDistancesFromFile(string fileName);
 
 
 
-void addEdge(vector <int> edges[], int u, int v)//Produce graph 
+void addEdge(vector <int> edges[], int u, int v)//Add edges to graph 
 { 
    edges[u].push_back(v); 
    edges[v].push_back(u); 
 } 
 
+//**************************************************************************************//
 int pretty_func(const vector<int>& v) 
 {
       static int count = 0;
@@ -83,7 +87,9 @@ void calCombinationCFG() {
 
 }
 
-int MinimumDisTwoConfig(int** D,int arr1[],int arr2[]){//Calculate distance between two configurations of servers
+
+//**************************************************************************************************************//
+int MinimumDisTwoConfig(int** D,int arr1[],int arr2[]){  //Calculate distance between two configurations of servers
          int totDis = 0;
          for (int i=0;i<4; i++){
                  if (arr1[i] == -1)
@@ -102,7 +108,8 @@ int MinimumDisTwoConfig(int** D,int arr1[],int arr2[]){//Calculate distance betw
  }
 
 
-int disStrings(int** Distance,int arr1[4], int arr2[4]){//Calculate distance between two points
+//***************************************************************************************************************//
+int disStrings(int** Distance,int arr1[4], int arr2[4]){  //Calculate distance between two points
 
 int k=0;
 int diffArr1[4] = {-1,-1,-1,-1};
@@ -120,10 +127,9 @@ for (int i=0;i<4;i++){
 }
 	//for (int i=0;i< 4;i++)
 	//cout<< "DiffArr1:   "   <<diffArr1[i] << " \n";
-	//ssscout<< "\n";
-//for (auto p = diffArr1.begin(); p != diffArr1.end(); p++) 
-//cout<< "DiffArr1:   "   <<diffArr1[i] << " \n";
-/////////////////////for diff2
+	//cout<< "\n";
+
+//for diff2
  k=0;
  int diffArr2[4] = {-1,-1,-1,-1};
   for (int i=0;i<4;i++){
@@ -146,9 +152,10 @@ return dis;
 
 }
 
-
+//*****************************************************************************************//
 int  computeWFA(int** D,int r[],int C0[])
-{
+{ // Compute Work function algorithm cost
+
 int finalCost = 0;
 int s=0;
 int index0,index1,index2,index3,dis0,dis1,dis2,dis3,dis;
@@ -191,7 +198,7 @@ for (int i=0;i<rLength;i++){
  		for(int k =0;k<4;k++){
          	if (r[i] ==  srvcfg[j].cfg[k]){
 			found = 1;
-			//ssscout << "foundddd" << "\n";
+			//cout << "foundddd" << "\n";
 			break;
          	}//if
 				
@@ -384,7 +391,7 @@ for (int i=0;i<rLength;i++){
 	return finalCost;		
 
 }
-
+//********************************************************************************************************//
 int computeOPT(int** D,int r[],int C0[]){
 
 
@@ -392,8 +399,9 @@ int computeOPT(int** D,int r[],int C0[]){
 int len = reqLength;
 for (int i=0;i<len;i++){
 	cout << "i: "<< "request:  " << i <<  "  " << r[i]<<  "  \n";
-	for (int j=0;j<comCount;j++){	
-/*sss
+	for (int j=0;j<comCount;j++){
+	
+/*s
 		cout << "config[j]\n";
 		for (int a=0;a<4;a++)
 		cout << srvcfg[j].cfg[a] << "  ";
@@ -405,7 +413,7 @@ for (int i=0;i<len;i++){
  		for(int k =0;k<4;k++){
          	if (r[i] ==  srvcfg[j].cfg[k]){
 			found = 1;
-			//cout << "foundddd" << "\n";
+			//cout << "Found config" << "\n";
 			break;
          	}//if
 				
@@ -566,6 +574,8 @@ for (int i=0;i<len;i++){
 	return mini;
 }
 
+//*****************************************************************************************************//
+
 int minEdgeBFS(vector <int> edges[], int u, int v, int n) 
 {
 
@@ -604,6 +614,7 @@ int minEdgeBFS(vector <int> edges[], int u, int v, int n)
     return distance[v];
 } 
 
+//************************************************************************************************//
 int** computeDistancesFromFile(string fileName)
 {
 	//int nodes = 0;
@@ -620,7 +631,7 @@ int** computeDistancesFromFile(string fileName)
 			N.append(1,line[1]);
 			cout << "NNNNNNN: " << N << "\n";
 			nodes = std::stoi(N);	
-			cout << " nodessssss: " <<  nodes << "\n";	
+			cout << " Number of nodes: " <<  nodes << "\n";	
 			continue;	
 		}	
 		else if (line[0] == '%')
@@ -655,7 +666,7 @@ int** computeDistancesFromFile(string fileName)
        	{
         	for (int j = 0; j < nodes; j++)
           	{
-			cout << matrix[i][j] << ' ';
+			cout << matrix[i][j] << "  ";
           	}
           	std::cout << std::endl;
       	}
@@ -664,7 +675,7 @@ return matrix;
   }//
 
 
-
+//********************************************************************************************************************//
 
 int computeGreedy(int** D,int r[],int C0[]){
 	int totalCost = 0;
@@ -675,7 +686,6 @@ int computeGreedy(int** D,int r[],int C0[]){
 
 	for (int n = 0; n < length; n++)
 	{
-/*
 		cout <<  "original C0 "<< "\n" ;
 	
 		for (int k = 0; k<4; k++)// k : number of servers
@@ -683,18 +693,18 @@ int computeGreedy(int** D,int r[],int C0[]){
                  cout << C0[k]<< "  ";
 	}
 	cout <<   "\n" ;
-*/
+
 		int x = r[n];
 		int x0 = r[n];  //nth request
 		int y0 = C0[0]; //first server
 		int min = D[x0][y0];	//Distance between request and first server
 		ymin = y0;
-		//cout << x << "min dis between request and  first server : \n"  << min  << "\n";
+		cout << x << "min dis between request and  first server : \n"  << min  << "\n";
 	for (int j = 0; j < 4; j++) //finding nearest server to current request
 	{
 		int y = C0[j];
-		//cout << "nth request: " << x << "  kth server: " << y << "\n";
-		//cout << x << "min dis between request and  kth  server : \n"  << D[x][y]  << "\n";
+		cout << "nth request: " << x << "  kth server: " << y << "\n";
+		cout << x << "min dis between request and  kth  server : \n"  << D[x][y]  << "\n";
 		if (D[x][y] < min)
 		{
 			min = D[x][y];
@@ -751,35 +761,40 @@ int main()
 
 	cout << "Enter the number of requests:  " << "\n";
 	cin >> reqLength;
-	/*
-	cout << "Enter requests: "<< "\n;"
-	cin >> requests;
-	for (int c=0; c < reqLength-1; c++){
-		cin >> requests.;	
-	}
-	*/
-	 
-	//string fileName = "ENZYMES_g473.txt";
-	//string fileName = "Test_Graph2.txt";
-	string fileName = "ConnectedGraph_testCase.txt";
-	//string fileName = "ENZYMES_g12.edges";
-	//string fileName = "Test_Graph.txt";
+
+
+//*****************************Input Files from website *******************************// 	 
+	//string fileName = "ENZYMES_g120.edges";
+	//string fileName = "ENZYMES_g121.edges";
+	//string fileName = "ENZYMES_g171.edges";
+	//string fileName = "ENZYMES_g193.edges";
+	string fileName = "ENZYMES_g226.edges";
+
+	//string fileName = "ConnectedGraph_testCase.txt";
+
+
 	//comCount = calComCount(nodes,4);
-	int** Distance;
-	Distance = computeDistancesFromFile(fileName);
+
+	int** Distance; //Minimum distance between nodes
+
+	Distance = computeDistancesFromFile(fileName);//Compute minimum distance 
+
 	int C0[] = {0,1,2,3};
-	//int requests[] = {7,8,9};
 	int requests[] = {7,8,3,4,5,4,6,6,8,3,7,8,4,5,4,6,6,8,7,8,4,5,4,6,6,8,3};
-	//int requests[] = {0,1,2,3,0,0,1,2,3,0,0,1,2,3,0,0,1,2,3,0,0,1,2,3,0,0,1,2,3,0,0,1,2,3,0,0,1,2,3,0,0,1,2,3,0,0,1,2,3,0,0,1,2,3,0,0,1,2,3,0};
+	//int requests[] = {0,1,2,3,0,0,1,2,3,0,0,1,2,3,0,0,1,2,3,0,0,1,2,3,0,0};
+
+//********************************************************************************//
 	int  minGreedy = computeGreedy( Distance, requests, C0);
 	cout << "Minimum cost in Greedy: " << minGreedy << "\n";
+//********************************************************************************//
+
 
 
 	//Intialize all points
 	for(int k=0; k < nodes; k++) 
 	points.push_back(k);
 
-	calCombinationCFG();
+	calCombinationCFG();//Produce all combination 4 of n (number of nodes)
 	cout << "Number of combinations : " << comCount << "\n";
 
 
@@ -795,9 +810,12 @@ int main()
 		//cout<<endl;
 	}
 
-
+//*********************Initial Configuration ***********************************//
 	int C00[4] = {0,1,2,3};
-	//int C1[4];
+
+
+
+//********************Distance between different configuration*******************//
 	int C1[4]= {-1,-1,-1,-1};
 	//disStrings(C00,C1);
 	int dis;
@@ -805,23 +823,21 @@ int main()
 
 	for (int j =0;j<4;j++){
 	C1[j] = srvcfg[i].cfg[j];
-	//ssscout<< "C1: "<<C1[j] <<"  ";
+	//cout<< "C1: "<<C1[j] <<"  ";
 	}
-	//ssscout << "\n";
+	//cout << "\n";
 
         int m = sizeof(C1)/sizeof(C1[0]);
         sort(C1, C1+m);
 
-	
 
 	dis = disStrings(Distance,C00,C1);
 	//dis = MinimumDisTwoConfig(Distance,C00,C1);
-	//ssscout << "dis: " << dis << "\n";
+	//cout << "dis: " << dis << "\n";
 	srvcfg[i].cost = dis;
 
 	}
 
-	cout << "x3 " << "\n";
 
 	/*
 	int C11[4]= {7,1,2,3};
