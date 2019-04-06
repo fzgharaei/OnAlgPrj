@@ -760,7 +760,8 @@ int main()
 	*/
 	 
 	//string fileName = "ENZYMES_g473.txt";
-	string fileName = "Test_Graph2.txt";
+	//string fileName = "Test_Graph2.txt";
+	string fileName = "ConnectedGraph_testCase.txt";
 	//string fileName = "ENZYMES_g12.edges";
 	//string fileName = "Test_Graph.txt";
 	//comCount = calComCount(nodes,4);
@@ -768,7 +769,7 @@ int main()
 	Distance = computeDistancesFromFile(fileName);
 	int C0[] = {0,1,2,3};
 	//int requests[] = {7,8,9};
-	int requests[] = {7,8,3,4,5,4,6,6,8,3,2,1,7,8,3,4,5,4,6,6,8,3,2,1,7,8,3,4,5,4,6,6,8,3,2,1};
+	int requests[] = {7,8,3,4,5,4,6,6,8,3,7,8,4,5,4,6,6,8,7,8,4,5,4,6,6,8,3};
 	//int requests[] = {0,1,2,3,0,0,1,2,3,0,0,1,2,3,0,0,1,2,3,0,0,1,2,3,0,0,1,2,3,0,0,1,2,3,0,0,1,2,3,0,0,1,2,3,0,0,1,2,3,0,0,1,2,3,0,0,1,2,3,0};
 	int  minGreedy = computeGreedy( Distance, requests, C0);
 	cout << "Minimum cost in Greedy: " << minGreedy << "\n";
