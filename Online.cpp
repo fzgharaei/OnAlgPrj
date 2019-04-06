@@ -152,7 +152,7 @@ int  computeWFA(int** D,int r[],int C0[])
 int finalCost = 0;
 int s=0;
 int index0,index1,index2,index3,dis0,dis1,dis2,dis3,dis;
-int WFACFGs[50]; 
+int WFACFGs[500]; 
 int initialConfig = 0; 
 //int len =  sizeof(r)/sizeof(r[0]);
 int rLength = reqLength;
@@ -180,15 +180,13 @@ for (int i=0;i<rLength;i++){
                 } 
 
 
-	
-
-		/*ssscout << "config[j]\n";
-		for (int a=0;a<4;a++)
-		cout << srvcfg[j].cfg[a] << "  ";
+/*
+		cout << "config[j]\n";
+		for (int c=0;c<4;c++)
+		cout << srvcfg[j].cfg[c] << "  ";
 		cout << "\n";
-		*/
 
-
+*/
 		int found =0;
  		for(int k =0;k<4;k++){
          	if (r[i] ==  srvcfg[j].cfg[k]){
@@ -342,7 +340,7 @@ for (int i=0;i<rLength;i++){
 			else if (cost == cost3)
 				index = index3;  
 
-			//ssscout << "min cost: "<< cost << "\n";
+			//cout << "min cost: "<< cost << "\n";
 				
 			srvcfg[j].cost= cost;
 			//ssscout<< cost <<"  ";
@@ -780,38 +778,29 @@ int main()
 	for(int k=0; k < nodes; k++) 
 	points.push_back(k);
 
+	calCombinationCFG();
+	cout << "Number of combinations : " << comCount << "\n";
 
 
-
-
-
-
-
-
-
-calCombinationCFG();
-cout << "counttttt : " << comCount << "\n";
-
-
-for(int i=0;i<combinations.size(); i++)
-{
-	for(int j =0; j<combinations[i].size();j++)
+	for(int i=0;i<combinations.size(); i++)
 	{
-		srvcfg[i].cfg[j] = combinations[i][j];
-		//cout<<combinations[i][j]<<" ";
-		//cout<< srvcfg[i].cfg[j] <<" ";
+		for(int j =0; j<combinations[i].size();j++)
+		{
+			srvcfg[i].cfg[j] = combinations[i][j];
+			//cout<<combinations[i][j]<<" ";
+			//cout<< srvcfg[i].cfg[j] <<" ";
+		}
+
+		//cout<<endl;
 	}
 
-	//cout<<endl;
-}
 
-
-int C00[4] = {0,1,2,3};
-//int C1[4];
-int C1[4]= {-1,-1,-1,-1};
-//disStrings(C00,C1);
-int dis;
-for (int i =0; i< comCount; i++){
+	int C00[4] = {0,1,2,3};
+	//int C1[4];
+	int C1[4]= {-1,-1,-1,-1};
+	//disStrings(C00,C1);
+	int dis;
+	for (int i =0; i< comCount; i++){
 
 	for (int j =0;j<4;j++){
 	C1[j] = srvcfg[i].cfg[j];
@@ -829,40 +818,40 @@ for (int i =0; i< comCount; i++){
 	//ssscout << "dis: " << dis << "\n";
 	srvcfg[i].cost = dis;
 
-}
+	}
 
-cout << "x3 " << "\n";
+	cout << "x3 " << "\n";
 
-/*
-int C11[4]= {7,1,2,3};
-dis = disStrings(Distance,C00,C11);
-cout << "xxxxxxxxxxdis: "<< dis << "\n";
-*/
+	/*
+	int C11[4]= {7,1,2,3};
+	dis = disStrings(Distance,C00,C11);
+	cout << "xxxxxxxxxxdis: "<< dis << "\n";
+	*/
 
-//Fill struct of configurations
+	//Fill struct of configurations
 
-//for (int i;i<4;i++)
-//cout << C00[i]<< " ";
-//for (int i =0; i< comCount; i++){
-//	cout<< srvcfg[i].cost <<" \n";
-//}
-
-
-int Minimum = computeOPT(Distance,requests,C00);
-cout << "Minimum cost for OPT: " <<  Minimum <<  "\n";
-cout << "OPTCosts: " << "\n";
-
-/*
-for (int t=0;t<comCount;t++)
-{
-	cout << srvcfg[t].cost << "  ";
-
-}
-*/
-int MinimumWFA = computeWFA(Distance,requests,C00);
-cout << "Minimum cost for WFA: " <<  MinimumWFA <<  "\n";
+	//for (int i;i<4;i++)
+	//cout << C00[i]<< " ";
+	//for (int i =0; i< comCount; i++){
+	//	cout<< srvcfg[i].cost <<" \n";
+	//}
 
 
-return 0;
+	int Minimum = computeOPT(Distance,requests,C00);
+	cout << "Minimum cost for OPT: " <<  Minimum <<  "\n";
+	//cout << "OPTCosts: " << "\n";
+
+	/*
+	for (int t=0;t<comCount;t++)
+	{
+		cout << srvcfg[t].cost << "  ";
+
+	}
+	*/
+	int MinimumWFA = computeWFA(Distance,requests,C00);
+	cout << "Minimum cost for WFA: " <<  MinimumWFA <<  "\n";
+
+
+	return 0;
 
 }
