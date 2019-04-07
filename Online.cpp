@@ -45,7 +45,7 @@ void addEdge(vector <int> edges[], int u, int v)//Add edges to graph
    edges[v].push_back(u); 
 } 
 
-//**************************************************************************************//
+//**********************************Produce combination of configuration****************************************************//
 int pretty_func(const vector<int>& v) 
 {
       static int count = 0;
@@ -381,7 +381,14 @@ for (int i=0;i<rLength;i++){
                  }
                 else if (found == 1){ //cost is the same as previous step
                          //cout << "Found == 1" << " \n";
-                         srvcfg[j].cost = srvcfg[j].cost;
+                        srvcfg[j].cost = srvcfg[j].cost;
+			if (initialConfig == 1)//Update initial configuration
+			{
+				for (int q=0;q<4;q++)
+				{
+					C0[q]= srvcfg[j].cfg[q];
+				}
+			}			
  
                  }
          }//j :Number of  configs
@@ -764,46 +771,33 @@ int main()
 	cin >> reqLength;
 
 
-//*****************************Input Files from website *******************************// 	 
+//*****************************Input Graphs from website *******************************// 	 
 	//string fileName = "ENZYMES_g120.edges";//correct
 	//string fileName = "ENZYMES_g74.edges";
 	//string fileName = "ENZYMES_g327.edges";
 	//string fileName = "ENZYMES_g193.edges";//correct
 	//string fileName = "ENZYMES_g226.edges";//correct
-	string fileName = "test_25_007.txt";
+
+
+//****************************Our Graphs***********************************************//
+
+	//string fileName = "test_25_007.txt";
 	//string fileName = "test_33_008.txt";
-	//string fileName = "test_38_0075.txt";
+	string fileName = "test_38_0075.txt";
 	//string fileName = "test_40_008.txt";
 	//string fileName = "test_46_0065.txt";
 
+
 //***************************Generate sequence Randomly*********************************//
 
-int requests[] = {24,23,22,21,20,19,18,17,16,17};
-//int requests[] = {};
-//int requests[] = {};
-
-
-
-//int requests[] = {0, 10, 0, 0, 14, 12, 15, 13, 10, 7, 19, 17, 6, 14, 0, 7, 15, 9, 10, 0, 5, 3, 14, 8, 11, 1, 13, 8, 8, 2};    //Uniform
-//int requests[] = {10, 11, 10, 11, 12, 13, 12, 11, 12, 11, 12, 11, 12, 11, 12, 13, 14, 15, 16, 15, 16, 15, 14, 13, 14, 13, 12, 11, 10, 11};  //markov
-//int requests[] = {15, 9, 18, 9, 7}; //Not greedy
-
-
-
-
-	//string fileName = "ConnectedGraph_testCase.txt";
-
-
-
-
-
+	int requests[] = {19,20,19,18,17,18,17,18,19,18,17,18,17,18,17,18,19,18,17,16};
 	//comCount = calComCount(nodes,4);
 
 	int** Distance; //Minimum distance between nodes
 
 	Distance = computeDistancesFromFile(fileName);//Compute minimum distance 
 
-	int C0[] = {4,5,6,7};
+	int C0[] = {0,1,2,3};
 	//int requests[] = {7,8,3,4,5,4,6,6,8,3,7,8,4,5,4,6,6,8,7,8,4,5,4,6,6,8,3};
 	//int requests[] = {0,1,2,3,0,0,1,2,3,0,0,1,2,3,0,0,1,2,3,0,0,1,2,3,0,0};
 
@@ -835,7 +829,7 @@ int requests[] = {24,23,22,21,20,19,18,17,16,17};
 	}
 
 //*********************Initial Configuration ***********************************//
-	int C00[4] = {4,5,6,7};
+	int C00[4] = {0,1,2,3};
 
 
 
