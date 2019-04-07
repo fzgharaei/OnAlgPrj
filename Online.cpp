@@ -167,7 +167,7 @@ int WFACost = 0;
 for (int i=0;i<rLength;i++){
 
 	WFACFGs[0] = 0;
-	cout << "i: "<< "request:  " << i <<  "  " << r[i]<<  "  \n";
+	//cout << "i: "<< "request:  " << i <<  "  " << r[i]<<  "  \n";
 	for (int j=0;j<comCount;j++){
 	//for (int j=0;j<5;j++){
 		
@@ -398,7 +398,7 @@ int computeOPT(int** D,int r[],int C0[]){
 //int len =  sizeof(r)/sizeof(r[0]);
 int len = reqLength;
 for (int i=0;i<len;i++){
-	cout << "i: "<< "request:  " << i <<  "  " << r[i]<<  "  \n";
+	//cout << "i: "<< "request:  " << i <<  "  " << r[i]<<  "  \n";
 	for (int j=0;j<comCount;j++){
 	
 /*s
@@ -700,7 +700,7 @@ int computeGreedy(int** D,int r[],int C0[]){
 		int y0 = C0[0]; //first server
 		int min = D[x0][y0];	//Distance between request and first server
 		ymin = y0;
-		cout << x << "min dis between request and  first server : \n"  << min  << "\n";
+		//cout << x << "min dis between request and  first server : \n"  << min  << "\n";
 	for (int j = 0; j < 4; j++) //finding nearest server to current request
 	{
 		int y = C0[j];
@@ -765,7 +765,7 @@ int main()
 
 
 //*****************************Input Files from website *******************************// 	 
-	//string fileName = "ENZYMES_g120.edges";//correct
+	string fileName = "ENZYMES_g120.edges";//correct
 	//string fileName = "ENZYMES_g74.edges";
 	//string fileName = "ENZYMES_g327.edges";
 	//string fileName = "ENZYMES_g193.edges";//correct
@@ -774,10 +774,14 @@ int main()
 
 //***************************Generate sequence Randomly*********************************//
 
+int requests[] = {12,16,5,19,16,22,18,7,4,8,2,15,8,19,11,21,15,7,16,17,12,13,22};
+//int requests[] = {};
+//int requests[] = {};
+
 
 
 //int requests[] = {0, 10, 0, 0, 14, 12, 15, 13, 10, 7, 19, 17, 6, 14, 0, 7, 15, 9, 10, 0, 5, 3, 14, 8, 11, 1, 13, 8, 8, 2};    //Uniform
-int requests[] = {10, 11, 10, 11, 12, 13, 12, 11, 12, 11, 12, 11, 12, 11, 12, 13, 14, 15, 16, 15, 16, 15, 14, 13, 14, 13, 12, 11, 10, 11};  //markov
+//int requests[] = {10, 11, 10, 11, 12, 13, 12, 11, 12, 11, 12, 11, 12, 11, 12, 13, 14, 15, 16, 15, 16, 15, 14, 13, 14, 13, 12, 11, 10, 11};  //markov
 //int requests[] = {15, 9, 18, 9, 7}; //Not greedy
 
 
@@ -888,3 +892,4 @@ int requests[] = {10, 11, 10, 11, 12, 13, 12, 11, 12, 11, 12, 11, 12, 11, 12, 13
 	return 0;
 
 }
+
