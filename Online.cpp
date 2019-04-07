@@ -765,16 +765,20 @@ int main()
 
 
 //*****************************Input Files from website *******************************// 	 
-	string fileName = "ENZYMES_g120.edges";//correct
+	//string fileName = "ENZYMES_g120.edges";//correct
 	//string fileName = "ENZYMES_g74.edges";
 	//string fileName = "ENZYMES_g327.edges";
 	//string fileName = "ENZYMES_g193.edges";//correct
 	//string fileName = "ENZYMES_g226.edges";//correct
-
+	string fileName = "test_25_007.txt";
+	//string fileName = "test_33_008.txt";
+	//string fileName = "test_38_0075.txt";
+	//string fileName = "test_40_008.txt";
+	//string fileName = "test_46_0065.txt";
 
 //***************************Generate sequence Randomly*********************************//
 
-int requests[] = {12,16,5,19,16,22,18,7,4,8,2,15,8,19,11,21,15,7,16,17,12,13,22};
+int requests[] = {24,23,22,21,20,19,18,17,16,17};
 //int requests[] = {};
 //int requests[] = {};
 
@@ -799,7 +803,7 @@ int requests[] = {12,16,5,19,16,22,18,7,4,8,2,15,8,19,11,21,15,7,16,17,12,13,22}
 
 	Distance = computeDistancesFromFile(fileName);//Compute minimum distance 
 
-	int C0[] = {0,1,2,3};
+	int C0[] = {4,5,6,7};
 	//int requests[] = {7,8,3,4,5,4,6,6,8,3,7,8,4,5,4,6,6,8,7,8,4,5,4,6,6,8,3};
 	//int requests[] = {0,1,2,3,0,0,1,2,3,0,0,1,2,3,0,0,1,2,3,0,0,1,2,3,0,0};
 
@@ -831,7 +835,7 @@ int requests[] = {12,16,5,19,16,22,18,7,4,8,2,15,8,19,11,21,15,7,16,17,12,13,22}
 	}
 
 //*********************Initial Configuration ***********************************//
-	int C00[4] = {0,1,2,3};
+	int C00[4] = {4,5,6,7};
 
 
 
