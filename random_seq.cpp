@@ -9,7 +9,7 @@ using namespace std;
 //at random from [n] and independently of all other requests;
 vector<int> uniform(int n, int len){
 int range_from  = 0;
-int range_to    = n;
+int range_to    = n -1;
 vector<int> results;
 std::random_device                  rand_dev;
 std::mt19937                        generator(rand_dev());
