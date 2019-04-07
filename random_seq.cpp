@@ -3,6 +3,8 @@
 #include <vector>
 #include <random>
 #include <algorithm>
+#include <ctime>
+
 using namespace std;
 
 //(a) generate the input sequence by sampling each new request uniformly 
@@ -28,6 +30,7 @@ vector<int> markov(int n, int len) //somewhat like random walk
 	vector<int> results;
 	int a_point = n/2;
 	results.push_back(a_point);
+        srand(time(NULL));
 	
 	while(results.size()<len){
 		double rnd = rand() / ((double) RAND_MAX);
@@ -53,6 +56,7 @@ vector<int> avoiding_greedy(int n)
 	init_conf.push_back(1);
 	init_conf.push_back(2);
 	init_conf.push_back(3);
+        srand(time(NULL));
 		
 	std::vector<int>::iterator it;
 	
