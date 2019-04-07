@@ -686,6 +686,7 @@ int computeGreedy(int** D,int r[],int C0[]){
 
 	for (int n = 0; n < length; n++)
 	{
+/*
 		cout <<  "original C0 "<< "\n" ;
 	
 		for (int k = 0; k<4; k++)// k : number of servers
@@ -693,7 +694,7 @@ int computeGreedy(int** D,int r[],int C0[]){
                  cout << C0[k]<< "  ";
 	}
 	cout <<   "\n" ;
-
+*/
 		int x = r[n];
 		int x0 = r[n];  //nth request
 		int y0 = C0[0]; //first server
@@ -703,8 +704,8 @@ int computeGreedy(int** D,int r[],int C0[]){
 	for (int j = 0; j < 4; j++) //finding nearest server to current request
 	{
 		int y = C0[j];
-		cout << "nth request: " << x << "  kth server: " << y << "\n";
-		cout << x << "min dis between request and  kth  server : \n"  << D[x][y]  << "\n";
+		//cout << "nth request: " << x << "  kth server: " << y << "\n";
+		//cout << x << "min dis between request and  kth  server : \n"  << D[x][y]  << "\n";
 		if (D[x][y] < min)
 		{
 			min = D[x][y];
@@ -732,8 +733,8 @@ int computeGreedy(int** D,int r[],int C0[]){
 	cout <<   "\n" ;	
 */
        	}
-	std::cout << "totalcost: " << totalCost ;
-	std::cout << std::endl;	
+	//std::cout << "totalcost: " << totalCost ;
+	//std::cout << std::endl;	
 	return totalCost;
 }	
 /*
@@ -764,13 +765,28 @@ int main()
 
 
 //*****************************Input Files from website *******************************// 	 
-	//string fileName = "ENZYMES_g120.edges";
-	//string fileName = "ENZYMES_g121.edges";
-	//string fileName = "ENZYMES_g171.edges";
-	//string fileName = "ENZYMES_g193.edges";
-	string fileName = "ENZYMES_g226.edges";
+	//string fileName = "ENZYMES_g120.edges";//correct
+	//string fileName = "ENZYMES_g74.edges";
+	//string fileName = "ENZYMES_g327.edges";
+	//string fileName = "ENZYMES_g193.edges";//correct
+	//string fileName = "ENZYMES_g226.edges";//correct
+
+
+//***************************Generate sequence Randomly*********************************//
+
+
+
+//int requests[] = {0, 10, 0, 0, 14, 12, 15, 13, 10, 7, 19, 17, 6, 14, 0, 7, 15, 9, 10, 0, 5, 3, 14, 8, 11, 1, 13, 8, 8, 2};    //Uniform
+int requests[] = {10, 11, 10, 11, 12, 13, 12, 11, 12, 11, 12, 11, 12, 11, 12, 13, 14, 15, 16, 15, 16, 15, 14, 13, 14, 13, 12, 11, 10, 11};  //markov
+//int requests[] = {15, 9, 18, 9, 7}; //Not greedy
+
+
+
 
 	//string fileName = "ConnectedGraph_testCase.txt";
+
+
+
 
 
 	//comCount = calComCount(nodes,4);
@@ -780,7 +796,7 @@ int main()
 	Distance = computeDistancesFromFile(fileName);//Compute minimum distance 
 
 	int C0[] = {0,1,2,3};
-	int requests[] = {7,8,3,4,5,4,6,6,8,3,7,8,4,5,4,6,6,8,7,8,4,5,4,6,6,8,3};
+	//int requests[] = {7,8,3,4,5,4,6,6,8,3,7,8,4,5,4,6,6,8,7,8,4,5,4,6,6,8,3};
 	//int requests[] = {0,1,2,3,0,0,1,2,3,0,0,1,2,3,0,0,1,2,3,0,0,1,2,3,0,0};
 
 //********************************************************************************//
