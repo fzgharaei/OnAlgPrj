@@ -1,0 +1,21 @@
+#To Generate a random graph with node count n and probability of each edge existance:
+
+g++ -o graph_gen.out -std=c++11 graph_gen.cpp
+./graph_gen.out
+
+#The program will ask for N and p from you on the run
+
+#to generate 3 sequances (uniform, markov and worst case for greedy)
+g++ -o rand_seq_gen.out -std=c++11 random_seq.cpp
+./rand_seq_gen.out
+
+#The program will ask you about the maximum node number of the graph and the length of sequence you wish to create for the first two case. the third case is by default set to 5. Also for getting a better result on case 3, you have to modify the initial server conf inside the code so you would get a sequance of length 5 which doesn't contain any of your initial configuration
+
+
+#to test the program You should change the sequence on line 808 to one of the desired sequences you got from the code above. Change the configurations in lines 815 (c0[]) and 847 (c00[]) to the desired combination you want and you can switch between different graphs by just changing the "fileName" variable to the name of the graph you want.
+
+g++ -o online_alg.out -std=c++11 Online.cpp
+./online_alg.out
+
+#the program will ask you about the desired length of sequance you want to apply
+
